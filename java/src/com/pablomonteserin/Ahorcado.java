@@ -13,11 +13,10 @@ public class Ahorcado {
 		while (true) {
 			System.out.println("Introduce una letra");
 			char letraIntroducida = lector.next().charAt(0);
-			modificaPalabraConGuiones(guiones, letras, letraIntroducida);
+			boolean haAcertado = modificaPalabraConGuiones(guiones, letras, letraIntroducida);
 			imprimirConEspaciosEnBlanco(guiones);
-			boolean haGanado = getHaGanado();
-			System.out.println(haGanado);
-		}
+			
+x		}
 	}
 
 	static char[] getPalabraSecreta() {
@@ -36,12 +35,15 @@ public class Ahorcado {
 		return palabraConGuiones;
 	}
 
-	static void modificaPalabraConGuiones(char[] g, char[] letras, char l) {
+	static boolean modificaPalabraConGuiones(char[] g, char[] letras, char l) {
+		boolean hasAcertadoAlgunaLetra = false;
 		for (int i = 0; i < letras.length; i++) {
 			if (letras[i] == l) {
 				g[i] = l;
+				hasAcertadoAlgunaLetra = true;
 			}
 		}
+		return hasAcertadoAlgunaLetra;
 	}
 
 	static void imprimirConEspaciosEnBlanco(char[] palabra) {
@@ -51,7 +53,7 @@ public class Ahorcado {
 		System.out.println();
 	}
 	
-	static boolean getHaGanado() {
+	static boolean getHaAcertado() {
 		return true;
 	}
 }
