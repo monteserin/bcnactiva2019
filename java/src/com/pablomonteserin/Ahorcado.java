@@ -1,11 +1,17 @@
 package com.pablomonteserin;
 
+import java.util.Scanner;
+
 public class Ahorcado {
 
 	public static void main (String args[]) {
 		char [] letras = getPalabraSecreta();
 		char [] guiones = getPalabraConGuiones(letras);
 		imprimirConEspaciosEnBlanco(guiones);
+		Scanner lector = new Scanner(System.in);
+		char letraIntroducida = lector.next().charAt(0);
+		modificaPalabraConGuiones(guiones, letras, letraIntroducida);
+		imprimirConEspaciosEnBlanco(guiones);	
 	}
 	
 	static char[] getPalabraSecreta() {
@@ -22,6 +28,10 @@ public class Ahorcado {
 			palabraConGuiones[i] = '_';
 		}
 		return palabraConGuiones;
+	}
+	
+	static void modificaPalabraConGuiones(char[]g,char []letras, char l) {
+	
 	}
 	
 	static void imprimirConEspaciosEnBlanco(char [] palabra) {
