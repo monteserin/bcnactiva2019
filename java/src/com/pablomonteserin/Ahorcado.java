@@ -1,5 +1,6 @@
 package com.pablomonteserin;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Ahorcado {
@@ -9,14 +10,19 @@ public class Ahorcado {
 		char[] guiones = getPalabraConGuiones(letras);
 		imprimirConEspaciosEnBlanco(guiones);
 		Scanner lector = new Scanner(System.in);
-
-		while (true) {
+		int contadorErrores  = 0;
+		
+		boolean haGanado = false;
+		while (contadorErrores<3 && !haGanado) {
 			System.out.println("Introduce una letra");
 			char letraIntroducida = lector.next().charAt(0);
 			boolean haAcertado = modificaPalabraConGuiones(guiones, letras, letraIntroducida);
 			imprimirConEspaciosEnBlanco(guiones);
-			
-x		}
+			haGanado = evaluaSiHasGanado(guiones, letras);
+			if(!haAcertado)contadorErrores++;
+			else if (haGanado)System.out.println("Has ganado y nadie podrá arrebatarte eso");
+		}
+		if(contadorErrores>=3)System.out.println("Has perdido");
 	}
 
 	static char[] getPalabraSecreta() {
@@ -55,5 +61,9 @@ x		}
 	
 	static boolean getHaAcertado() {
 		return true;
+	}
+	
+	static boolean evaluaSiHasGanado(char [] palabraConGuiones, char [] palabraSecreta) {
+		return Arrays.equals(palabraConGuiones, palabraSecreta);
 	}
 }
