@@ -1,6 +1,12 @@
 package com.pablomonteserin.borrame;
 
-public abstract class Atleta extends Persona{
+public  class Atleta extends Persona{
+
+	@Override
+	void saltar() {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }

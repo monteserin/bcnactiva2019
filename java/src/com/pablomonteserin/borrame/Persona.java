@@ -1,6 +1,6 @@
 package com.pablomonteserin.borrame;
 
-public abstract class Persona {
+public class Persona implements ISerViviente{
 	
-	abstract void saltar();
+
 }
