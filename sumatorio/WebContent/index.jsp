@@ -9,6 +9,7 @@
 <body>
 
 <form action="/sumatorio/Controlador">
+
 <input type="hidden" name="action" value="sumar">
 
 <input type="number" name="n1" > + 

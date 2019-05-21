@@ -1,8 +1,9 @@
 package com.pablomonteserin;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,37 +30,15 @@ public class Controlador extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String palabra = request.getParameter("palabra");
 		HttpSession session = request.getSession();
-		ServletContext ctx = getServletContext();
-		String action = request.getParameter("action");
 		
-		
-		if(action.equals("sumar")) {
-		Integer sessionSuma2 = (Integer) session.getAttribute("sessionSuma");
-		if(sessionSuma2 == null) {
-			sessionSuma2 = 0;
+		List<String> palabrasSession = (List<String>) session.getAttribute("palabrasSession");
+		if(palabrasSession == null) {
+			palabrasSession = new ArrayList<String>();
 		}
-		
-		Integer ctxSuma2 = (Integer) ctx.getAttribute("ctxSuma");
-		if(ctxSuma2 == null) {
-			ctxSuma2 = 0;
-		}
-		
-		String n1 = request.getParameter("n1");
-		String n2 = request.getParameter("n2");
-		
-		int n1Int = Integer.parseInt(n1);
-		int n2Int = Integer.parseInt(n2);
-		
-		int requestSuma = n1Int + n2Int;
-		sessionSuma2 += requestSuma;
-		ctxSuma2 += requestSuma;
-		request.setAttribute("requestSuma", requestSuma);
-		session.setAttribute("sessionSuma", sessionSuma2);
-		ctx.setAttribute("ctxSuma", ctxSuma2);
-		}else if(action.equals("borrar")) {
-			session.invalidate();
-		}
+		palabrasSession.add(palabra);
+		session.setAttribute("palabrasSession", palabrasSession);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
