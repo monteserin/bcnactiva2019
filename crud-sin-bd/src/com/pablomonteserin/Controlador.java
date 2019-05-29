@@ -58,17 +58,28 @@ public class Controlador extends HttpServlet {
 
 			}else if(action.equals("modificacion")) {
 				String nombre = request.getParameter("nombre");
-				String dni = request.getParameter("dni");
-				int edad = Integer.parseInt(request.getParameter("edad"));
-				
-				Iterator<Persona> it = personas.iterator();
-				while(it.hasNext()) {
-					Persona p = it.next();
-					if(p.getDni().equals(dni)) {
-						p.setEdad(edad);
-						p.setNombre(nombre);
+				if( nombre.contains("o")) {
+					try {
+						throw new LasOEstanProhibidasException();
+					} catch (LasOEstanProhibidasException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}else {
+					String dni = request.getParameter("dni");
+					int edad = Integer.parseInt(request.getParameter("edad"));
+					
+					Iterator<Persona> it = personas.iterator();
+					while(it.hasNext()) {
+						Persona p = it.next();
+						if(p.getDni().equals(dni)) {
+							p.setEdad(edad);
+							p.setNombre(nombre);
+						}
 					}
 				}
+				
+				
 
 			}
 		
