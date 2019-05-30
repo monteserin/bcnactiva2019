@@ -18,11 +18,12 @@ public class Main {
 			List<Siniestro> siniestros1 = new ArrayList<Siniestro>();
 
 			Vehiculo vehiculo1 = new Vehiculo("111111",3,4,"Opel");
-			//Vehiculo vehiculo2 = new Vehiculo("222222",3,4,"55555");
+			
 			SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy");
 			siniestros1.add(new Siniestro(s.parse("10-10-2010"), 1000, vehiculo1));
-			//siniestros1.add(new Siniestro(s.parse("10-10-2012"), 1000, vehiculo2));
+			
 			vehiculo1.setSiniestros(siniestros1);
+			
 			session.save(vehiculo1);
 			transaction.commit();
 			session.close();
