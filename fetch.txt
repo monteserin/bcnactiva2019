@@ -1,0 +1,22 @@
+<script type="text/javascript">
+	fetch('https://swapi.co/api/people/1/')
+	.then( function(data){
+		console.log(data);
+		return data.json()})
+	.then(function(data) {
+		console.log(data);
+		document.querySelector(".datos").innerHTML = data.name
+	});
+
+
+
+</script>
+
+<script type="text/javascript">
+	fetch('https://swapi.co/api/people/1/')
+	.then( data => data.json())
+	.then(data => {console.log(data)})
+</script>
+
+
+<h1 class="datos"></h1>
